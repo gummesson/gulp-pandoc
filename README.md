@@ -1,4 +1,4 @@
-# gulp-pandoc
+# gulp-pandoc [![NPM version](https://badge.fury.io/js/gulp-pandoc.png)](http://badge.fury.io/js/gulp-pandoc) [![Build Status](https://travis-ci.org/gummesson/gulp-pandoc.png?branch=master)](https://travis-ci.org/gummesson/gulp-pandoc)
 
 > Pandoc plugin for gulp.
 

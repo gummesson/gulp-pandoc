@@ -35,19 +35,27 @@ Since Pandoc covers a big range of markup formats the `options.from`, `options.t
 
 #### options.from
 
+**Type:** string
+
 The markup format that your documents are authored in, eg: `markdown`.
 
 #### options.to
+
+**Type:** string
 
 The markup format that you want to convert your documents into, eg: `html5`.
 
 #### options.ext
 
+**Type:** string
+
 The extension of the soon-to-be converted documents, eg: `.html`.
 
 #### options.args
 
-An array with additional command line flags, eg: `['--smart', '--css=style.css']`.
+**Type:** array
+
+Additional command line flags, eg: `['--smart', '--css=style.css']`.
 
 ## License
 

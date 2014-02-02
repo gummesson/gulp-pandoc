@@ -1,8 +1,8 @@
 /* Modules */
 
-var pdc   = require('pdc');
-var map   = require('map-stream');
-var gutil = require('gulp-util');
+var pdc     = require('pdc');
+var through = require('through2');
+var gutil   = require('gulp-util');
 
 /* Plugin */
 
@@ -21,18 +21,27 @@ module.exports = function(opts) {
   if (!to) { throw new PluginError(PluginName, '"to" is not defined'); }
   if (!ext) { throw new PluginError(PluginName, '"ext" is not defined'); }
 
-  var pandoc = function(file, cb) {
+  return through.obj(function (file, enc, cb) {
     var input = file.contents.toString();
-    if (file.isNull())  { return this.emit('data', file); }
-    if (file.isStream()) { return this.emit('error', new PluginError(PluginName, 'Streaming not supported')); }
+    if (file.isNull())  { 
+      this.push(file);
+      return cb();
+    }
+    
+    if (file.isStream()) {
+      this.emit('error', new PluginError(PluginName, 'Streaming not supported')); 
+      return cb();
+    }
 
     pdc(input, from, to, args, function(err, output) {
-      if (err) { this.emit('error', err); }
+      if (err) {
+        this.emit('error', err.toString());
+        return cb();
+      }
       file.contents = new Buffer(output);
       file.path = gutil.replaceExtension(file.path, opts.ext);
-      cb(null, file);
+      this.push(file);
+      return cb();
     }.bind(this));
-  };
-
-  return map(pandoc);
+  });
 };

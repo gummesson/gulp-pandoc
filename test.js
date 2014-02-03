@@ -22,7 +22,7 @@ describe('pandoc()', function() {
     });
 
     stream.on('error', function(err) {
-      err.must.be('Error: pandoc exited with code 9: pandoc: Unknown writer: pdf\n');
+      err.must.include('Error: pandoc exited with code 9');
       done();
     });
 

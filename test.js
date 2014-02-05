@@ -6,10 +6,29 @@ var pandoc = require('./index');
 
 /* Tests */
 
-// 1. Pandoc returns a bunch of carriage returns that's
-//    *really* hard to deal with.
-
 describe('pandoc()', function() {
+
+  it('must throw an error if pdc args are incorrect', function(done) {
+    var file = new gutil.File({
+      path: 'test.md',
+      contents: new Buffer('"This is a test."')
+    });
+
+    var stream = pandoc({
+      from: 'markdown',
+      to: 'pdf',
+      ext: '.html',
+      args: ['--smart']
+    });
+
+    stream.on('error', function(err) {
+      err.must.include('Error: pandoc exited with code 9');
+      done();
+    });
+
+    stream.write(file);
+  });
+
   it('must compile Markdown to HTML', function(done) {
     var file = new gutil.File({
       path: 'test.md',

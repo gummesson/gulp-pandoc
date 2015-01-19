@@ -27,7 +27,7 @@
     "must": "~0.10.0"
   },
   "dependencies": {
-    "pdc": "~0.1.2",
+    "pdc": "~0.2.2",
     "through2": "~0.4.1",
     "gulp-util": "~2.2.14"
   }

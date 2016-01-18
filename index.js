@@ -15,7 +15,7 @@ module.exports = function(opts) {
   var from = opts.from;
   var to   = opts.to;
   var ext  = opts.ext;
-  var args = opts.args;
+  var args = opts.args || [];
 
   if (!from) { throw new PluginError(PluginName, '"from" is not defined'); }
   if (!to) { throw new PluginError(PluginName, '"to" is not defined'); }

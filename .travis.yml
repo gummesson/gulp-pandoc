@@ -1,8 +1,7 @@
+sudo: false
 language: node_js
 node_js:
   - "0.10"
-before_install:
-  - sudo apt-get install pandoc
-notifications:
-  email:
-    - ellengummesson+travis-ci@gmail.com
+addons:
+  apt_packages:
+    - pandoc

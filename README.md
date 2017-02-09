@@ -57,6 +57,12 @@ The extension of the soon-to-be converted documents, eg: `.html`.
 
 Additional command line flags, eg: `['--smart', '--css=style.css']`.
 
+#### options.path
+
+**Type:** string
+
+The full or relative path to pandoc executable
+
 ## License
 
 The MIT License (MIT)

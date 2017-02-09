@@ -3,6 +3,7 @@
 var pdc     = require('pdc');
 var through = require('through2');
 var gutil   = require('gulp-util');
+var path    = require('path');
 
 /* Plugin */
 
@@ -16,10 +17,15 @@ module.exports = function(opts) {
   var to   = opts.to;
   var ext  = opts.ext;
   var args = opts.args || [];
+  var pdcPath = opts.path;
 
   if (!from) { throw new PluginError(PluginName, '"from" is not defined'); }
   if (!to) { throw new PluginError(PluginName, '"to" is not defined'); }
   if (!ext) { throw new PluginError(PluginName, '"ext" is not defined'); }
+
+  if (pdcPath) {
+    pdc.path = path.resolve(pdcPath);
+  }
 
   return through.obj(function (file, enc, cb) {
     var input = file.contents.toString();
